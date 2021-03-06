@@ -5,6 +5,9 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+require 'faker'
+Listing.destroy_all
+User.destroy_all
 
 user = User.create(email: 'test@testing.com', password: '123456')
 
@@ -13,8 +16,8 @@ if user.errors.any?
 else
   10.times do
     Listing.create(
-      title: 'Listing',
-      description: 'This is a test listing',
+      title: Faker::Movie.title,
+      description: Faker::Movie.quote,
       user: user
     )
   end
